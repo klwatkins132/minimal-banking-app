@@ -1,8 +1,7 @@
 'use strict';
 
 /////////////////////////////////////////////////
-/////////////////////////////////////////////////
-// BANKIST APP
+// Data
 
 const account1 = {
     owner: 'Kelsy Watkins',
@@ -34,15 +33,19 @@ const account4 = {
 
 const accounts = [account1, account2, account3, account4];
 
-/******************** todo: target html elements *****************/
+/////////////////////////////////////////////////
+// Elements
+
 const labelWelcome = document.querySelector('.welcome');
+const labelBalance = document.querySelector('.balance__value');
 const btnLogin = document.querySelector('.login__btn');
 const inputLoginUsername = document.querySelector('.login__input--user');
 const inputLoginPin = document.querySelector('.login__input--pin');
 const containerApp = document.querySelector('.app');
 
 
-/******************** todo: Functions ****************************/
+/////////////////////////////////////////////////
+// Functions
 
 // for each account, create username from initials
 const createUsernames = function (accs) {
@@ -56,7 +59,16 @@ const createUsernames = function (accs) {
 };
 createUsernames(accounts);
 
-// display and calc balance
+// calc balance
+const calcDisplayBalance = function (acc) {
+    acc.balance = acc.movements.reduce((acc, mov) => acc + mov, 0);
+    labelBalance.textContent = `$${acc.balance}`;
+};
+
+const updateUI = function (acc) {
+    // Display balance
+    calcDisplayBalance(acc);
+};
 
 // display and calc summary -- in, out, interest
 
@@ -88,6 +100,8 @@ btnLogin.addEventListener('click', function (e) {
         // Clear input fields
         inputLoginUsername.value = inputLoginPin.value = '';
         inputLoginPin.blur();
+        updateUI(currentAccount);
+
     }
     else {
         labelWelcome.style.color = 'red';
