@@ -14,8 +14,9 @@
 <body>
   <!-- TOP NAVIGATION -->
   <nav>
-    <p class="welcome">Log in to get started!</p>
+    <p class="welcome">Log in to get started!</p> <!-- todo js: target welcome to change output upon user login-->
     <img src="logo.png" alt="Logo" class="logo" />
+    <!-- todo js: need login validation and functionality, create preset-->
     <form class="login">
       <input type="text" placeholder="User" class="login__input" />
       <input type="text" placeholder="PIN" maxlength="4" class="login__input" />
@@ -23,17 +24,39 @@
     </form>
   </nav>
 
+  <!-- todo js: hide entire main section until login-->
   <main class="app">
     <!-- BALANCE -->
     <div class="balance">
       <div>
         <p class="balance__label">Current balance</p>
         <p class="balance__date">
-          As of <span>00/00/0000</span>
+          As of <span>00/00/0000</span> <!-- todo js: target date to reflect current, add time?-->
         </p>
       </div>
-      <p class="balance__value">$0000</p>
+      <p class="balance__value">$0000</p> <!-- todo js: reflect all balance changes in program here -->
     </div>
+
+    <!-- MOVEMENTS -->
+    <!--todo js: create preset data, display all movements-->
+    <!--todo html&css: HTML&CSS add scrollable container, shows deposits, withdrawls, date, and value-->
+
+    <!-- SUMMARY -->
+    <!--todo js: need functionalityy for money in, money out, interest and a sorting feature-->
+    <!--todo html&css: show linear money in, money out, interest and sort-->
+
+    <!-- todo html&css: add three operations for user to right of movements: 1.transfers, 2.loans, 3.close account-->
+    <!-- todo js: transfer money between preset accounts and reflect in app along with loans and close-->
+    <!-- OPERATION: TRANSFERS -->
+    <!-- OPERATION: LOAN -->
+    <!-- OPERATION: CLOSE -->
+
+    <!-- LOGOUT TIMER -->
+    <!--todo js: start timer on login, logout user at end-->
+    <!--todo html&css: bottom right corner countdown-->
+
+    <!-- FOOTER -->
+
   </main>
 
   <script src="script.js"></script>
