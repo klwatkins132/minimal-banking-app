@@ -4,7 +4,6 @@
 /////////////////////////////////////////////////
 // BANKIST APP
 
-// todo: make some preset accounts
 const account1 = {
     owner: 'Kelsy Watkins',
     movements: [200, 450, -400, 3000, -650, -130, 70, 1300],
@@ -35,19 +34,74 @@ const account4 = {
 
 const accounts = [account1, account2, account3, account4];
 
-// todo: target html elements
+/******************** todo: target html elements *****************/
+const labelWelcome = document.querySelector('.welcome');
+const btnLogin = document.querySelector('.login__btn');
+const inputLoginUsername = document.querySelector('.login__input--user');
+const inputLoginPin = document.querySelector('.login__input--pin');
+const containerApp = document.querySelector('.app');
 
-// todo: Functions
+
+/******************** todo: Functions ****************************/
+
+// for each account, create username from initials
+const createUsernames = function (accs) {
+    accs.forEach(function (acc) {
+        acc.username = acc.owner
+            .toLowerCase()
+            .split(' ')
+            .map(name => name[0])
+            .join('');
+    });
+};
+createUsernames(accounts);
+
 // display and calc balance
+
 // display and calc summary -- in, out, interest
+
 // display movements -- deposits, withdrawls, date, value
-// create usrnames for accounts
+
 // logout timer
 
-// todo: Event Handlers
-// hello user on login -- start timer
+
+/***************** todo: Event Handlers ***************************/
+let currentAccount;
+
+// login functionality
+btnLogin.addEventListener('click', function (e) {
+    // Prevent form from submitting
+    e.preventDefault();
+
+    currentAccount = accounts.find(
+        acc => acc.username === inputLoginUsername.value
+    );
+    console.log(currentAccount);
+
+    if (currentAccount?.pin === Number(inputLoginPin.value)) {
+        // Display UI and message
+        labelWelcome.style.color = 'black';
+        labelWelcome.textContent = `Welcome back, ${currentAccount.owner.split(' ')[0]
+            }!`;
+        containerApp.style.opacity = 100;
+
+        // Clear input fields
+        inputLoginUsername.value = inputLoginPin.value = '';
+        inputLoginPin.blur();
+    }
+    else {
+        labelWelcome.style.color = 'red';
+        labelWelcome.textContent = `Account not found`;
+    }
+});
+// start timer
+
 // transfer money
+
 // loan money
+
 // close account
+
 // hide main
+
 // sort movements
