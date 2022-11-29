@@ -41,7 +41,9 @@ const labelBalance = document.querySelector('.balance__value');
 const btnLogin = document.querySelector('.login__btn');
 const inputLoginUsername = document.querySelector('.login__input--user');
 const inputLoginPin = document.querySelector('.login__input--pin');
+
 const containerApp = document.querySelector('.app');
+const containerMovements = document.querySelector('.movements')
 
 
 /////////////////////////////////////////////////
@@ -65,14 +67,37 @@ const calcDisplayBalance = function (acc) {
     labelBalance.textContent = `$${acc.balance}`;
 };
 
+// display and calc summary -- in, out, interest
+
+// display movements -- deposits, withdrawls, value
+const displayMovements = function(movements){
+    containerMovements.innerHTML = ''; //Remove hardcoded values in HTML
+
+    movements.forEach(function(mov, i){
+        const type = mov > 0 ? 'deposit' : 'withdrawal'
+
+        const html = `
+        <div class="movements">
+        <div class="movements__row">
+        <div class="movements__type movements__type--${type}"> ${i + 1} ${type}</div>
+        <div class="movements__value">${mov}</div>
+        </div>
+        `;
+
+        containerMovements.insertAdjacentHTML('afterbegin', html);
+    });
+};
+displayMovements(account1.movements);
+
 const updateUI = function (acc) {
     // Display balance
     calcDisplayBalance(acc);
+
+    // Display movements
+    displayMovements(acc.movements);
 };
 
-// display and calc summary -- in, out, interest
-
-// display movements -- deposits, withdrawls, date, value
+// display movements -- date
 
 // logout timer
 
